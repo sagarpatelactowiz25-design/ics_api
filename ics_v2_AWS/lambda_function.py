@@ -22,7 +22,7 @@ def lambda_handler(event, context):
     client_ip = event.get('headers', {}).get('x-forwarded-for', 'internal')
     request_id = hashlib.sha256((api_key + str(start_time)).encode()).hexdigest()
 
-    client = pymysql.connect(host='148.113.1.104', database='ics_api_dashboard', user='root', password='actowiz')
+    client = pymysql.connect(host='', database='ics_api_dashboard', user='', password='')
     cursor = client.cursor()
 
     body_data = json.loads(event['body']) if isinstance(event['body'], str) else event['body']
