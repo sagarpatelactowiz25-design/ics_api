@@ -10,7 +10,7 @@ class ConfigMongo:
         try:
             current_datetime = datetime.datetime.now(datetime.timezone.utc)
             current_month = current_datetime.strftime('%Y_%m')
-            self.con = pymongo.MongoClient("mongodb://actowiz:tvvL4n%3D33%3D*_@51.222.244.92:27017/admin?authSource=admin")
+            self.con = pymongo.MongoClient("mongodb://:@:27017/admin?authSource=admin")
             self.db = self.con['ics_api']
             self.log_master = self.db[f'logs_table_{current_month}']
             self.project_master_api = self.db["key_tables"]
@@ -79,4 +79,5 @@ class ConfigMongo:
             return True if res and res.get('total_usage', 0) <= res.get('usage_limit', 0) else False
         except Exception as er:
             print(f"Error in db authentication token: {er}")
+
             return False
